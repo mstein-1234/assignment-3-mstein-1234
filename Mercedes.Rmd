@@ -1,0 +1,16 @@
+---
+title: "Mercedes"
+output: html_document
+---
+
+Here’s a little about me ~~(because they made me, I’m introverted, and I wouldn’t do it otherwise):~~
+
+-   I’m a student of Soil and Crop Sciences and a professional excuse-inventor. Seriously, I could write a book.
+-   My hobbies include: mastering the art of procrastination and collecting memes that may or may not be useful.
+-   My secret superpower: making even the most boring tasks slightly entertaining… or sarcastically commenting on them.
+-   Special skill: complaining about everything… in a creative and slightly dramatic way, of course.
+
+::: {style="text-align:center;"}
+
+![ **Here I am (more or less)**](images/image1.png){style="border-radius:50%;" width="300"}
+:::
