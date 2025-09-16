@@ -9,4 +9,4 @@ output: html_document
 
 Created by [Michael](https://github.com/mstein-1234) and [Mercedes](https://github.com/MercedesVargas499)
 
-![We are a group of powerful businesspeople who do really important business.](https://images.stockcake.com/public/6/2/5/6256ea83-2717-48b5-b5fe-1ee5abdfa9c9_large/corporate-team-posing-stockcake.jpg){alt="We are a group of powerful businesspeople who do really important business."}
+![We are a group of powerful businesspeople who do really important business.](https://images.stockcake.com/public/6/2/5/6256ea83-2717-48b5-b5fe-1ee5abdfa9c9_large/corporate-team-posing-stockcake.jpg)
