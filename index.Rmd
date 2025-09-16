@@ -5,14 +5,8 @@ date: "2025-09-15"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+## Industries Incorporated LLC
 
-## Michael
+Created by [Michael](https://github.com/mstein-1234) and [Mercedes](https://github.com/MercedesVargas499)
 
--   I have a dog named Mama and a cat named Maxx
-
--   Mama is whining to go outside as I write this.
-
--   Meanwhile, Maxx is scratching my couch. It's very distracting.
+![We are a group of powerful businesspeople who do really important business.](https://images.stockcake.com/public/6/2/5/6256ea83-2717-48b5-b5fe-1ee5abdfa9c9_large/corporate-team-posing-stockcake.jpg){alt="We are a group of powerful businesspeople who do really important business."}
