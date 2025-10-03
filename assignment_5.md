@@ -20,6 +20,7 @@ library(tidyverse)
 ``` r
 library(knitr)
 library(gapminder)
+library(dplyr)
 ```
 
 ## **Exercise 1. Trends in land value**
@@ -58,11 +59,61 @@ housing |>
 | AK | West | 2008.00 | 234590 | 155400 | 79190 | 33.8 | 1.544 | 1.885 | 2007 | 4 |
 | AK | West | 2008.25 | 233714 | 157458 | 76256 | 32.6 | 1.538 | 1.817 | 2008 | 1 |
 
-## Including Plots
+## **1.1 Washington DC was not assigned to a region in this dataset. According to the United States Census Bureau, however, DC is part of the South region. Here:**
 
-You can also embed plots, for example:
+- Change the region of DC to “South” (Hint: there are multiple ways to
+  do this, but mutate() and ifelse() might be helpful)
+- Create a new tibble or regular dataframe consisting of this new
+  updated region variable along with the original variables State, Date
+  and Land.Value (and no others)
+- Pull out the records from DC in this new data frame. How many records
+  are there from DC? Show the first 6 lines.
 
-![](assignment_5_files/figure-commonmark/pressure-1.png)
+``` r
+housing1 <- housing |> 
+  mutate(region = ifelse(State == "DC", "South", region))
 
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+housing1 |> 
+  filter(State == "DC") |> 
+  head(6) |> 
+  kable()
+```
+
+| State | region | Date | Home.Value | Structure.Cost | Land.Value | Land.Share..Pct. | Home.Price.Index | Land.Price.Index | Year | Qrtr |
+|:---|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| DC | South | 2003.00 | 384443 | 93922 | 290522 | 75.6 | 1.469 | 1.654 | 2002 | 4 |
+| DC | South | 2003.25 | 399633 | 93961 | 305673 | 76.5 | 1.527 | 1.740 | 2003 | 1 |
+| DC | South | 2003.50 | 417110 | 94032 | 323078 | 77.5 | 1.594 | 1.839 | 2003 | 2 |
+| DC | South | 2003.75 | 436496 | 94486 | 342010 | 78.4 | 1.668 | 1.947 | 2003 | 3 |
+| DC | South | 2004.00 | 457806 | 95807 | 361999 | 79.1 | 1.749 | 2.062 | 2003 | 4 |
+| DC | South | 2004.25 | 481171 | 98379 | 382792 | 79.6 | 1.839 | 2.182 | 2004 | 1 |
+
+Answer: 153
+
+#### **1.2 Generate a tibble/dataframe that summarizes the mean land value of each region at each time point and show its first 6 lines.**
+
+``` r
+mean_home <- housing1 |> 
+  group_by(region, Date) |> 
+  summarize(mean_land_value = mean(Land.Value)) |> 
+  select(region, Date, mean_land_value) |> 
+  head(6) |> 
+  kable()
+```
+
+    `summarise()` has grouped output by 'region'. You can override using the
+    `.groups` argument.
+
+#### **1.3 Using the tibble/dataframe from 1.2, plot the trend in mean land value of each region through time.**
+
+``` r
+mean_home <- housing1 |> 
+  group_by(region, Date) |> 
+  summarize(mean_land_value = mean(Land.Value)) |> 
+  select(region, Date, mean_land_value) |> 
+  ggplot() +
+  geom_line(aes(x = date, y = mean_land_value, color = region))
+```
+
+    `summarise()` has grouped output by 'region'. You can override using the
+    `.groups` argument.
