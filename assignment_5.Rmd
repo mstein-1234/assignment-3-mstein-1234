@@ -131,5 +131,23 @@ gapminder |>
 #### **2.6 From the previous plot, we see some abnormal trends in Asia and Africa, where the the life expectancy in some countries sharply dropped at certain time periods. Here, we look into what happened in Asia in more detail. First, create a new dataset by filtering only the Asian countries. Show the first 6 lines of this filtered dataset.**
 
 ```{r}
+gapminder |>
+  filter(continent == "Asia") |> 
+  head(6) |> 
+  kable()
+  
 
+```
+
+#### **2.7 Using the filtered dataset, identify the countries that had abnormal trends in life expectancy by plotting, and discuss historical events possibly explaining these trends. (Hint: facet by country)**
+
+Answer: Iraq, Cambodia, China
+
+```{r}
+gapminder |>
+  filter(continent == "Asia") |> 
+  ggplot(aes(x = year, y = lifeExp, color = country)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~country)
 ```
