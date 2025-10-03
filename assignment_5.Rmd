@@ -1,0 +1,53 @@
+---
+title: "assignment_5"
+author: "Michael Stein"
+date: "2025-10-03"
+format: gfm
+engine: knitr 
+---
+
+```{r}
+library(tidyverse)
+library(knitr)
+library(gapminder)
+library(dplyr)
+```
+
+## **Exercise 1. Trends in land value**
+
+This excercise uses a dataset that describes the trends in land value (`Land.Value`), among other variables, in different states in the US 1975-2013. The states are grouped into four different regions, under the variable `region`. This dataset was obtained from the Data Science Services of Harvard University.
+
+```{r}
+housing <- read_csv("https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/landdata_states.csv")
+housing |> 
+  head() |>  
+  kable()
+```
+
+## **1.1 Washington DC was not assigned to a region in this dataset. According to the United States Census Bureau, however, DC is part of the South region. Here:**
+
+-   Change the region of DC to “South” (Hint: there are multiple ways to do this, but mutate() and ifelse() might be helpful)
+-   Create a new tibble or regular dataframe consisting of this new updated region variable along with the original variables State, Date and Land.Value (and no others)
+-   Pull out the records from DC in this new data frame. How many records are there from DC? Show the first 6 lines.
+
+```{r}
+housing1 <- housing |> 
+  mutate(region = ifelse(State == "DC", "South", region))
+
+housing1 |> 
+  filter(State == "DC") |> 
+  head(6) |> 
+  kable()
+
+```
+
+Answer: 153
+
+#### **1.2 Generate a tibble/dataframe that summarizes the mean land value of each region at each time point and show its first 6 lines.**
+
+```{r}
+housing1 |> 
+  group_by(region, Date)
+  summarize(mean_land_value = mean(Land.Value))
+  select(region, Date, mean_land_value)
+```
